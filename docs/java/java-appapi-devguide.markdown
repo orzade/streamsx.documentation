@@ -21,9 +21,13 @@ The Java Application API is fully compatible with IBM Streams version 4.0.0 and 
 
 ## Setting up environment
 
-There are three primary ways to get started with the API. If you are trying the API for the first time, the Streams Quick Start Edition VM is likely the fastest way to start working with the tutorials on this page. Download it at the following link to get started: [Streams Quick Start Edition VM](http://www-01.ibm.com/software/data/infosphere/stream-computing/trials.html)
+There are three primary ways to get started with the API. If you are trying the API for the first time, the Streams Quick Start Edition VM is likely the fastest way to start working with the tutorials on this page.  The Streams Quick Start Edition VM contains a ready-to-go release of IBM  Streams. It includes IBM Streams Studio, which provides an intuitive, visual representation of your streaming application. You can download it using the link below.
 
-The Streams Quick Start Edition VM contains a ready-to-go release of IBM  Streams. Additionally, the Quick Start VM comes bundled with IBM Streams Studio, which provides an intuitive, visual representation of your streaming application. After you've downloaded it, start the VM, open a console and type:
+
+{% include download.html%}
+
+
+After you've downloaded it, start the VM, open a console and type:
 
 ~~~~~~
 streamtool startinstance
@@ -392,7 +396,7 @@ Or, more concisely with Java 8 lambda expressions:
 
 ~~~~~~
 TStream<String> strings = ...;
-strings.sing(string -> System.err.println(string));
+strings.sink(string -> System.err.println(string));
 ~~~~~~
 
 # API Features
@@ -400,7 +404,7 @@ strings.sing(string -> System.err.println(string));
 The Java Application API comes with a number of features that are of great use to a streams developer. Chief among these are User-Defined Parallelism (UDP), and windowing. Both features are implementations of standard patterns that are commonly seen in many streaming application frameworks.
 
 ### User-Defined Parallelism:
-If a particular portion of your graph is bottelnecking, and there needs to be additional throughput, making it a parallel region allows multiple threads and processes to handle the various transformations and filterings of the data in parallel. Take the temperature reading example from the intro guide. Let's suppose that temperature reading are being taken so rapidly, that one thread is insufficient to convert it to Celcius to Kelvin quickly enough. In this case, parallel is a great tool:
+If there is a bottleneck in a particular portion of your graph and there needs to be additional throughput, try making it a parallel region.  This allows multiple threads and processes to handle the various transformations and filterings of the data in parallel. Take the temperature reading example from the intro guide. Let's suppose that temperature reading are being taken so rapidly, that one thread is insufficient to convert it to Celcius to Kelvin quickly enough. In this case, parallel is a great tool:
 
 ~~~~~~
     public static void main(String args[]){    
